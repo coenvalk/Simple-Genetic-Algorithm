@@ -6,15 +6,14 @@
 
 void mutate(int& candidate) {
   int pivot = rand() % 32;
-  candidate = candidate ^ pivot;
+  candidate = candidate ^ (1 << pivot);
 }
 
 int fitness(const int& candidate) {
   int R = 0;
-  int C = candidate;
-  while (C > 0) {
-    R += C & 1;
-    C /= 2;
+  for (int i = 0; i < 32; i++) {
+    // isolate:
+    R += (candidate >> i) & 1;
   }
   return R;
 }
@@ -30,14 +29,15 @@ std::vector<int> cross(const int& p1, const int& p2) {
 }
 
 int main() {
-  genetic_algorithm<int> test0(100, 1, 0.1, &rand, &cross, &fitness, &mutate);
+  genetic_algorithm<int> test0(10, .7, 0.2, &rand, &cross, &fitness, &mutate);
   int best = test0.best_candidate();
   std::string binary = std::bitset<32>(best).to_string(); //to binary
   std::cout<<binary<< ": " << fitness(best) << std::endl;
-  for (int i = 0; i < 10000; i++) {
+  while (fitness(best) < 32) {
     test0.do_generation();
     best = test0.best_candidate();
     std::string binary = std::bitset<32>(best).to_string(); //to binary
     std::cout<<binary<< ": " << fitness(best) << std::endl;
   }
+  std::cout << "generations: " << test0.get_generation_count() << std::endl;
 }
