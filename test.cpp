@@ -4,12 +4,12 @@
 #include <cstdlib>
 #include <bitset>
 
-void mutate(int& candidate) {
+void mutate0(int& candidate) {
   int pivot = rand() % 32;
   candidate = candidate ^ (1 << pivot);
 }
 
-int fitness(const int& candidate) {
+int fitness0(const int& candidate) {
   int R = 0;
   for (int i = 0; i < 32; i++) {
     // isolate:
@@ -18,7 +18,7 @@ int fitness(const int& candidate) {
   return R;
 }
 
-std::vector<int> cross(const int& p1, const int& p2) {
+std::vector<int> cross0(const int& p1, const int& p2) {
   std::vector<int> children(2);
   int pivot = rand() % 32;
   int bottom = (1 << pivot) - 1;
@@ -29,15 +29,16 @@ std::vector<int> cross(const int& p1, const int& p2) {
 }
 
 int main() {
-  genetic_algorithm<int> test0(10, .7, 0.2, &rand, &cross, &fitness, &mutate);
+  genetic_algorithm<int> test0(10, .7, 0.2, &rand, &cross0, &fitness0, &mutate0);
   int best = test0.best_candidate();
   std::string binary = std::bitset<32>(best).to_string(); //to binary
-  std::cout<<binary<< ": " << fitness(best) << std::endl;
-  while (fitness(best) < 32) {
+  std::cout<<binary<< ": " << fitness0(best) << std::endl;
+  while (fitness0(best) < 32) {
     test0.do_generation();
     best = test0.best_candidate();
     std::string binary = std::bitset<32>(best).to_string(); //to binary
-    std::cout<<binary<< ": " << fitness(best) << std::endl;
+    std::cout<<binary<< ": " << fitness0(best) << std::endl;
   }
   std::cout << "generations: " << test0.get_generation_count() << std::endl;
+  return 0;
 }

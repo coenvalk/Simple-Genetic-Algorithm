@@ -124,6 +124,29 @@ class genetic_algorithm {
     fitnesses_[index1] = fitnesses_[index2];
     fitnesses_[index2] = TMP;
   }
+
+  int partition(int lo, int hi) {
+    int pivot = fitnesses_[hi];
+    int i = lo - 1;
+    for (int j = lo; j < hi; j++) {
+      if (fitnesses_[j] > pivot) {
+	i++;
+	swap(i, j);
+      }
+    }
+    if (fitnesses_[hi] > fitnesses_[i + 1]) {
+      swap(i + 1, hi);
+    }
+    return i + 1;
+  }
+
+  void quicksort(int lo, int hi) {
+    if (lo < hi) {
+      int p = partition(lo, hi);
+      quicksort(lo, p - 1);
+      quicksort(p + 1, hi);
+    }
+  }
   
   /*
     private population sorting function:
@@ -132,13 +155,7 @@ class genetic_algorithm {
   */
   void sort_pop() {
     compute_fitnesses();
-    for (int i = 0; i < fitnesses_.size(); i++) {
-      for (int j = i + 1; j < fitnesses_.size(); j++) {
-	if (fitnesses_[j] > fitnesses_[i]) {
-	  swap(i, j);
-	}
-      }
-    }
+    quicksort(0, population_.size() - 1);
   }  
 };
 
