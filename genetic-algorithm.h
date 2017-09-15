@@ -51,29 +51,31 @@ class genetic_algorithm {
     std::vector<T> new_population(population_.size());
     for (int i = 0; i < n; i++) {
       for(int j = i + 1; j < n; j++) {
-	T one = population_[i];
-	T two = population_[j];
-	if ((float) rand() < C_ * (float) INT_MAX) {
-	  // crossover!
-	  std::vector<T> children = (*crossover_)(one, two);
-	  one = children[0];
-	  two = children[1];
-	}
-	if ((float) rand() < M_ * (float) INT_MAX) {
-	  // mutate one!
-	  (*mutate_)(one);
-	}
-	if ((float) rand() < M_ * (float) INT_MAX) {
-	  // mutate two!
-	  (*mutate_)(two);
-	}
-	if (x < new_population.size()) {
-	  new_population[x] = one;
-	  x++;
-	}
-	if (x < new_population.size()) {
-	  new_population[x] = two;
-	  x++;
+	if (i < population_.size() && j < population_.size()) {
+	  T one = population_[i];
+	  T two = population_[j];
+	  if ((float) rand() < C_ * (float) INT_MAX) {
+	    // crossover!
+	    std::vector<T> children = (*crossover_)(one, two);
+	    one = children[0];
+	    two = children[1];
+	  }
+	  if ((float) rand() < M_ * (float) INT_MAX) {
+	    // mutate one!
+	    (*mutate_)(one);
+	  }
+	  if ((float) rand() < M_ * (float) INT_MAX) {
+	    // mutate two!
+	    (*mutate_)(two);
+	  }
+	  if (x < new_population.size()) {
+	    new_population[x] = one;
+	    x++;
+	  }
+	  if (x < new_population.size()) {
+	    new_population[x] = two;
+	    x++;
+	  }
 	}
       }
     }
