@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <limits.h>
+#include <cmath>
 
 template <class T>
 class genetic_algorithm {
@@ -45,16 +46,8 @@ class genetic_algorithm {
     makes that the new population
   */
   void do_generation() {
-    /*
-      TODO: make more efficient
-     */
-    int x = 2;
-    int n = 1;
-    while (n < population_.size()) {
-      x++;
-      n = x * (x - 1) / 2;
-    }
-    x = 0;
+    int n = (int) ceil(sqrt(2 * (population_.size() + 1)) + 1);
+    int x = 0; // index of population
     std::vector<T> new_population(population_.size());
     for (int i = 0; i < n; i++) {
       for(int j = i + 1; j < n; j++) {
