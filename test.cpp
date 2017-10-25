@@ -27,10 +27,16 @@
 #include <vector>
 #include <cstdlib>
 #include <bitset>
+#include <string>
 
 void mutate0(int& candidate) {
   int pivot = rand() % 32;
   candidate = candidate ^ (1 << pivot);
+}
+
+void mutate1(std::string& candidate) {
+  int pivot = rand() % candidate.length();
+  candidate[pivot] = (char) ((rand() % 96) + 32);
 }
 
 int fitness0(const int& candidate) {
@@ -38,6 +44,15 @@ int fitness0(const int& candidate) {
   for (int i = 0; i < 32; i++) {
     // isolate:
     R += (candidate >> i) & 1;
+  }
+  return R;
+}
+
+int fitness1(const std::string& candidate) {
+  std::string test_string = "The quick brown fox jumps over the lazy dog.";
+  int R = 0;
+  for (int i = 0; i < candidate.size(); i++) {
+    R += 96 - std::abs(candidate[i] - test_string[i]);
   }
   return R;
 }
@@ -52,7 +67,25 @@ std::vector<int> cross0(const int& p1, const int& p2) {
   return children;
 }
 
+std::vector<std::string> cross1(const std::string& p1, const std::string& p2) {
+  std::vector<std::string> children(2);
+  int pivot = rand() % p1.length();
+  children[0] = p1.substr(0, pivot) + p2.substr(pivot);
+  children[1] = p2.substr(0, pivot) + p1.substr(pivot);
+  return children;
+}
+
+std::string random_string() {
+  int len = 44;
+  std::string new_string;
+  for (int i = 0; i < len; i++) {
+    new_string += (char) ((rand() % 96) + 32);
+  }
+  return new_string;
+}
+
 int main() {
+  // integer test:
   genetic_algorithm<int> test0(10, .7, 0.2, &rand, &cross0, &fitness0, &mutate0);
   int best = test0.best_candidate();
   std::string binary = std::bitset<32>(best).to_string(); //to binary
@@ -64,5 +97,12 @@ int main() {
     std::cout<<binary<< ": " << fitness0(best) << std::endl;
   }
   std::cout << "generations: " << test0.get_generation_count() << std::endl;
+  // std::cout << random_string() << std::endl;
+  genetic_algorithm<std::string> test1(1000, 0.7, 0.2, &random_string, &cross1, &fitness1, &mutate1);
+  while (test1.best_candidate() != "The quick brown fox jumps over the lazy dog.") {
+    test1.do_generation();
+    std::cout << test1.best_candidate() << std::endl;
+  }
+  std::cout << "generations: " << test1.get_generation_count() << std::endl;
   return 0;
 }
