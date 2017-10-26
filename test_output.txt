@@ -1,0 +1,109 @@
+00011001010010010101110011111111: 18
+01000110111010000111110011111111: 20
+01000110111010000111110011111111: 20
+00010110111010010111110011111111: 21
+01100110111010010111110011111111: 22
+01110110111010010111110011111111: 23
+01110110111010010111110011111111: 23
+01110110111010010111111011111111: 24
+01110110111010010111111011111111: 24
+01110110111011010111110011111111: 24
+01110110111010010111111011111111: 24
+01110110111011010111111011111111: 25
+01110110111011010111111011111111: 25
+01110110111011010111111011111111: 25
+01110110111011010111111011111111: 25
+01110110111011010111111011111111: 25
+01110110111011010111111011111111: 25
+11110110111011010111111011111111: 26
+11110110111011010111111011111111: 26
+11110110111011010111111011111111: 26
+11110110111011010111111011111111: 26
+11110110111011010111111011111111: 26
+11110110111011010111111111111111: 27
+11110110111011010111111111111111: 27
+11110110111011010111111111111111: 27
+11110110111011010111111111111111: 27
+11110110111011010111111111111111: 27
+11110110111011011111111111111111: 28
+11110110111011011111111111111111: 28
+11110110111011011111111111111111: 28
+11110110111011111111111111111111: 29
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110110111111111111111111111111: 30
+11110111111111111111111111111111: 31
+11110111111111111111111111111111: 31
+11110111111111111111111111111111: 31
+11110111111111111111111111111111: 31
+11110111111111111111111111111111: 31
+11110111111111111111111111111111: 31
+11110111111111111111111111111111: 31
+11110111111111111111111111111111: 31
+11110111111111111111111111111111: 31
+11111111111111111111111111111111: 32
+generations: 51
+Nux8`xsiv$lz:tG c}hYiw=|m"t\AxWwet<wJg25n&p(
+^eb){lGFLQswry8l`a?iw=|m"t\AxWwmm1eUR`4\wl?
+Nux8`xsiv$lz:tG c}hYiw=|m"t\mi tf`%ple(Zfm*
+Nux8`xsiv$lzdRh hq|Yiw=|m"t\mi tf`%ple(Zfm*
+Ymq/kxsiv-lzwry hq|+iw=|m"t\Ax tf`%ple(Zfm*
+^eb){ntbx+ewhth hq|+iw=|m"t\mi tf`%pl{(Zfm*
+^eb){xsiv$lswth hq|+iw=|m"rxmi tf`%pl{(Zfm*
+Ymq/kxsie-ewhth hq|+iwr|m"rxXi tf`%pl{(Zfm*
+^eb){xsiv$lswth hq|+iwp|m"rxei tf`%pl{(Zfm*
+Ymb){ntbx ewhth hq| iwr|m"rxmi tf`%pl{(Zfm*
+Ymb){zr^e-ewhth hq| iwp|m"rxer tf`%pl{(Zfm*
+^eb)kxsie ewhth hq| iwp|m"rxer tf`%pl{(Zfm*
+^eb)kxsie ewhth hq| iwppm"rxer tf`%pl{(efm*
+^eb)kxsie ewhth hq| iwppm"rxer tf`%pl{(eom*
+Ymb)kxhie ewhth hq| iwppm"rxer tf`%p`{(efm*
+Ymb)qxgie ewhth hq| iwppm"rxer tf`%p`{(eom*
+^eb sxhih$ewmth hq| iwppm"rxer tf`%p`{(eom*
+Ymb)qxgbi ewotn hq| iwpqm"rxer tf`%p`{(eom*
+Veb sxgbi ewotn hq| iwpqm"rxer tf`%p`{(eom*
+Veb qxgbi ewotn hqx iwppm"rxer tfd%p`{(emm*
+Veb qxgbi ewotn hqx iwppm"rxer tfd%p`{!eom*
+Veb qxgbi epotn hqx iwppm"rxer tfe%p`{!eom*
+Veb qxgbi etotn hqx iwpqq"rxer tfd%p`{!eod*
+Vee qvgbi etotn hqx iwpqq"rxer tfd%p`{!eod*
+Vee qxgbi epotn hqx iwppq"rxer tfd!p`{z!eom*
+Vee qvgbi etown hqx iwpqq"rxer tfd!p`{y!eoe*
+Vee qvgbi etown hqx iwppq"rxer tfd!p`{y!eog*
+Vee qvgbi epown hqx iwnpq"rxer tfd!p`{y!eog*
+Vee qvgbi epown hqx iwnpq"rver tfd!k`{y!eoe*
+Vee qvgbk btown hqx iwnpq"rver tfd!k`{y!eoe*
+Vee qvgbk btown hqx iwnqq"over tfd!k`{y!eog*
+Vee qvgbk bpown hqx iwnpq"over tfd!k`{y!eog*
+Tee qvgbk btown hqx iwnpq"over tfd!k`{y!eog*
+Vee qvgbk btown hqx iwnpq"over thd!k`{y!eog/
+Tee qvgbk brown hqx iwnpq"over thd!k`{y!eog/
+Vhe qvgbk brown hqx iwnps"over thd!k`{y!eog/
+The qvgbk brown gqx iwnps"over thd!k`{y!eog/
+The qvgbk brown gqx iwnps"over thd!k`{y!dog/
+The qvgbk brown fqx iwnps"over thd!k`{y!dog/
+The qvgbk brown fqx iwnps"over thd!ka{y!dog/
+The qvgck brown fqx iwnps"over thd!ka{y!dog/
+The qvgck brown fqx iwnps"over thd!la{y!dog/
+The qvgck brown fqx itnps"over thd la{y!dog.
+The qvgck brown fqx iunps"over thd la{y!dog.
+The qvgck brown fpx iunps"over thd la{y!dog.
+The qvgck brown fpx iunps over thd la{y!dog.
+The qvick brown fpx iunps over thd la{y!dog.
+The qvick brown fox iunps over thd la{y dog.
+The quick brown fox iunps over thd la{y dog.
+The quick brown fox iunps over thd la{y dog.
+The quick brown fox iunps over thd lazy dog.
+The quick brown fox iunps over thd lazy dog.
+The quick brown fox iumps over thd lazy dog.
+The quick brown fox iumps over the lazy dog.
+The quick brown fox jumps over the lazy dog.
+generations: 55

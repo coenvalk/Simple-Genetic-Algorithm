@@ -85,6 +85,7 @@ std::string random_string() {
 }
 
 int main() {
+  srand(1);
   // integer test:
   genetic_algorithm<int> test0(10, .7, 0.2, &rand, &cross0, &fitness0, &mutate0);
   int best = test0.best_candidate();
@@ -97,8 +98,9 @@ int main() {
     std::cout<<binary<< ": " << fitness0(best) << std::endl;
   }
   std::cout << "generations: " << test0.get_generation_count() << std::endl;
-  // std::cout << random_string() << std::endl;
-  genetic_algorithm<std::string> test1(1000, 0.7, 0.2, &random_string, &cross1, &fitness1, &mutate1);
+
+  // string test:
+  genetic_algorithm<std::string> test1(5000, 0.7, 0.2, &random_string, &cross1, &fitness1, &mutate1);
   while (test1.best_candidate() != "The quick brown fox jumps over the lazy dog.") {
     test1.do_generation();
     std::cout << test1.best_candidate() << std::endl;
