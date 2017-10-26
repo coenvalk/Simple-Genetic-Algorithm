@@ -28,3 +28,7 @@ Once these functions are implemented, you can use the member function
 
 To get an idea of how to use the class, take a look at test.cpp. This program uses the genetic algorithm to find an integer created of all
 one's in binary.
+
+While this class is very minimal, the class is robust enough to perform generations on itself! I implemented a genetic algorithm that takes
+in genetic algorithms that take in integers (the same genetic algorithms as test0 in test.cpp) to find the optimal values for crossover rate
+and mutation rate. Take a look at meta_test.cpp for a genetic algorithm that performs evolutions on genetic algorithms.

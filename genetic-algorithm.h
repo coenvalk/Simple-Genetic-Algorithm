@@ -10,6 +10,11 @@
 template <class T>
 class genetic_algorithm {
  public:
+
+  // default constructor
+  genetic_algorithm() {
+  }
+  
   /*
     constructor:
     needs population, a function to make a
@@ -23,16 +28,29 @@ class genetic_algorithm {
 		   std::vector<T> (*crossover)(const T& p1, const T& p2),
 		   int (*fitness)(const T& candidate),
 		   void (*mutate)(T& candidate)) :
-  crossover_(crossover), fitness_(fitness), mutate_(mutate), generation_(0), M_(M), C_(C) {
+  crossover_(crossover), fitness_(fitness), mutate_(mutate), generation_(0), M_(M), C_(C), random_candidate_(random_candidate) {
     population_ = std::vector<T>(population);
     fitnesses_ = std::vector<int>(population);
     for (int i = 0; i < population; i++) {
-      population_[i] = (*random_candidate)();
+      population_[i] = (*random_candidate_)();
     }
     sort_pop();
   }
 
-  int get_generation_count() { return generation_; }
+  void reset_generations() {
+    int p = population_.size();
+    for (int i = 0; i < p; i++) {
+      population_[i] = (*random_candidate_)();
+    }
+    generation_ = 0;
+  }
+
+  int get_generation_count() const { return generation_; }
+  float get_crossover() const { return C_; }
+  float get_mutation() const { return M_; }
+
+  void set_crossover(float new_C) { C_ = new_C; }
+  void set_mutation(float new_M) { M_ = new_M; }
 
   // finds the best candidate
   const T& best_candidate() {
@@ -101,6 +119,7 @@ class genetic_algorithm {
   std::vector<T> (*crossover_)(const T& p1, const T& p2);
   int (*fitness_)(const T& candidate);
   void (*mutate_)(T& candidate);
+  T (*random_candidate_)();
   
   void compute_fitnesses() {
     for (int i = 0; i < population_.size(); i++) {
