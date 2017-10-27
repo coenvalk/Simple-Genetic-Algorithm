@@ -75,8 +75,8 @@ genetic_algorithm<int> random_meta() {
 
 int main () {
   genetic_algorithm<genetic_algorithm<int> > meta(10, 0.7, 0.2, &random_meta, &cross_meta, &fitness_meta, &mutate_meta);
-  for (int gen = 0; gen < 100; gen++) {
-    std::cout << "====== GENERATION " << gen + 1 << " ======" << std::endl; 
+  for (int gen = 0; gen < 10; gen++) {
+    std::cout << "====== GENERATION " << gen + 1 << " ====== AVERAGE FITNESS: " << meta.avg_fitness() << std::endl; 
     meta.do_generation();
   }
   std::cout << "best crossover rate: " << meta.best_candidate().get_crossover() << std::endl;

@@ -48,6 +48,14 @@ class genetic_algorithm {
   int get_generation_count() const { return generation_; }
   float get_crossover() const { return C_; }
   float get_mutation() const { return M_; }
+  float avg_fitness() const {
+    float avg = 0;
+    for (int i = 0; i < fitnesses_.size(); i++) {
+      avg += (float) fitnesses_[i];
+    }
+    avg /= fitnesses_.size();
+    return avg;
+  }
 
   void set_crossover(float new_C) { C_ = new_C; }
   void set_mutation(float new_M) { M_ = new_M; }
