@@ -12,7 +12,18 @@ class genetic_algorithm {
  public:
 
   // default constructor
+  // CANNOT PERFORM EVOLUTION WITHOUT FUNCTIONS.
+  // SIMPLY CREATING THE DEFAULT CONSTRUCTOR AND
+  // RUNNING GENERATION WILL THROW ERROR.
   genetic_algorithm() {
+    population_ = std::vector<T>();
+    fitnesses_ = std::vector<T>();
+    mutate_ = NULL;
+    fitness_ = NULL;
+    random_candidate_ = NULL;
+    crossover_ = NULL;
+    C_ = 0.5;
+    M_ = 0.5;
   }
   
   /*
@@ -31,6 +42,12 @@ class genetic_algorithm {
   crossover_(crossover), fitness_(fitness), mutate_(mutate), generation_(0), M_(M), C_(C), random_candidate_(random_candidate) {
     population_ = std::vector<T>(population);
     fitnesses_ = std::vector<int>(population);
+
+    if (random_candidate_ == NULL) {
+      std::cerr << "ERROR: random canddiate function cannot be NULL!" << std::endl;
+      throw 4;
+    }
+    
     for (int i = 0; i < population; i++) {
       population_[i] = (*random_candidate_)();
     }
@@ -38,6 +55,11 @@ class genetic_algorithm {
   }
 
   void reset_generations() {
+    if (random_candidate_ == NULL) {
+      std::cerr << "ERROR: random candidate function cannot be NULL!" << std::endl;
+      throw 4;
+    }
+    
     int p = population_.size();
     for (int i = 0; i < p; i++) {
       population_[i] = (*random_candidate_)();
@@ -59,7 +81,17 @@ class genetic_algorithm {
 
   void set_crossover(float new_C) { C_ = new_C; }
   void set_mutation(float new_M) { M_ = new_M; }
-
+  void set_mutate_function(void (*mutate)(T& candidate)) { mutate_ = mutate; }
+  void set_fitness_function(int (*fitness)(const T& candidate)) { fitness_ = fitness; }
+  void set_crossover_function(std::vector<T> (*crossover)(const T& p1, const T& p2)) {
+    crossover_ = crossover;
+  }
+  void set_random_function(T (*random_candidate)()) { random_candidate_ = random_candidate; }
+  void set_pop(int P) {
+    population_ = std::vector<T>(P);
+    reset_generations();
+  }
+  
   // finds the best candidate
   const T& best_candidate() {
     return population_[0];
@@ -70,8 +102,22 @@ class genetic_algorithm {
     of all candidates, takes the top population,
     crosses some of them over, mutates some, and
     makes that the new population
+
+    NOTE: THROWS ERROR IF ALL FUNCTIONS ARE NOT ACCOUNTED FOR!
   */
   void do_generation() {
+    if (mutate_ == NULL) {
+      std::cerr << "ERROR: mutation function cannot be NULL!!" << std::endl;
+      throw 1;
+    }
+    if (crossover_ == NULL) {
+      std::cerr << "ERROR: crossover function cannot be NULL!" << std::endl;
+      throw 2;
+    }
+    if (population_.size() == 0) {
+      std::cerr << "ERROR: population can't be zero!" << std::endl;
+    }
+    
     int n = (int) ceil(sqrt(2 * (population_.size() + 1)) + 1);
     int x = 0; // index of population
     std::vector<T> new_population(population_.size());
@@ -130,6 +176,11 @@ class genetic_algorithm {
   T (*random_candidate_)();
   
   void compute_fitnesses() {
+    if (fitness_ == NULL) {
+      std::cerr << "ERROR: fitness function cannot be NULL!" << std::endl;
+      throw 3;
+    }
+    
     for (int i = 0; i < population_.size(); i++) {
       fitnesses_[i] = (*fitness_)(population_[i]);
       // std::cout << "fitness " << i << ": " << fitnesses_[i] << std::endl;
