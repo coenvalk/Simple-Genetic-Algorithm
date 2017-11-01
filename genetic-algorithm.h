@@ -24,6 +24,7 @@ class genetic_algorithm {
     crossover_ = NULL;
     C_ = 0.5;
     M_ = 0.5;
+    generation_ = 0;
   }
   
   /*
