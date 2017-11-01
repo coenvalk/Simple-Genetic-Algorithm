@@ -65,8 +65,9 @@ class genetic_algorithm {
       population_[i] = (*random_candidate_)();
     }
     generation_ = 0;
+    sort_pop();
   }
-
+  
   int get_generation_count() const { return generation_; }
   float get_crossover() const { return C_; }
   float get_mutation() const { return M_; }
@@ -114,8 +115,10 @@ class genetic_algorithm {
       std::cerr << "ERROR: crossover function cannot be NULL!" << std::endl;
       throw 2;
     }
+    
     if (population_.size() == 0) {
       std::cerr << "ERROR: population can't be zero!" << std::endl;
+      throw 3;
     }
     
     int n = (int) ceil(sqrt(2 * (population_.size() + 1)) + 1);
@@ -178,8 +181,10 @@ class genetic_algorithm {
   void compute_fitnesses() {
     if (fitness_ == NULL) {
       std::cerr << "ERROR: fitness function cannot be NULL!" << std::endl;
-      throw 3;
+      throw 5;
     }
+
+    fitnesses_ = std::vector<int>(population_.size());
     
     for (int i = 0; i < population_.size(); i++) {
       fitnesses_[i] = (*fitness_)(population_[i]);
