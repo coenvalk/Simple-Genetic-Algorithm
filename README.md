@@ -1,6 +1,7 @@
 # Simple Genetic Algorithm
 
 [![Build Status](https://travis-ci.org/coenvalk/Simple-Genetic-Algorithm.svg?branch=master)](https://travis-ci.org/coenvalk/Simple-Genetic-Algorithm)
+[![Coverage Status](https://coveralls.io/repos/github/coenvalk/Simple-Genetic-Algorithm/badge.svg?branch=master)](https://coveralls.io/github/coenvalk/Simple-Genetic-Algorithm?branch=master)
 
 This is a simple genetic algorithm helper class made in C++. It is a templated
 class that provides the framework for developing data through generations over
