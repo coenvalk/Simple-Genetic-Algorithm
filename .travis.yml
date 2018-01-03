@@ -1,2 +1,4 @@
 language: cpp
-script: make && make test
+before_install: pip install --user cpp-coveralls
+script: ./configure --enable-gcov && make && make test
+after_success: coveralls --exclude lib --exclude tests --gcov-options '\-lp'
