@@ -86,27 +86,81 @@ std::string random_string() {
 }
 
 int main() {
-  srand(1);
-  // integer test:
-  genetic_algorithm<int> test0(10, .7, 0.2, &rand, &cross0, &fitness0, &mutate0);
-  int best = test0.best_candidate();
-  std::string binary = std::bitset<32>(best).to_string(); //to binary
-  std::cout<<binary<< ": " << fitness0(best) << std::endl;
-  while (fitness0(best) < 32) {
-    test0.do_generation();
-    best = test0.best_candidate();
-    std::string binary = std::bitset<32>(best).to_string(); //to binary
-    std::cout<<binary<< ": " << fitness0(best) << std::endl;
+  // error testing:
+  genetic_algorithm<int> errortest;
+  try {
+    errortest.reset_generations();
+    std::cerr << "TEST FAIL: reset_generations() should result in an exception when random_candidate is NULL!" << std::endl;
+    return 1;
+  } catch (int e) {
+    assert(e == 4);
   }
-  std::cout << "generations: " << test0.get_generation_count() << std::endl;
 
-  // string test:
-  genetic_algorithm<std::string> test1(5000, 0.7, 0.2, &random_string, &cross1, &fitness1, &mutate1);
-  while (test1.best_candidate() != "The quick brown fox jumps over the lazy dog.") {
-    test1.do_generation();
-    std::cout << test1.best_candidate() << std::endl;
+  try {
+    genetic_algorithm<int> errortest2(10, 0, 0, NULL, NULL, NULL, NULL);
+    std::cerr << "TEST FAIL: custom constructor should result in an exception when random_candidate is NULL!" << std::endl;
+    return 1;
+  } catch (int e) {
+    assert(e == 4);
   }
-  std::cout << "generations: " << test1.get_generation_count() << std::endl;
 
+  try {
+    errortest.do_generation();
+    std::cerr << "TEST FAIL: do_generation() should result in an exception when mutation function is NULL!" << std::endl;
+  } catch (int e) {
+    assert(e == 1);
+  }
+
+  assert(errortest.get_generation_count() == 0);
+  assert(errortest.get_crossover() == 0.5);
+  assert(errortest.get_mutation() == 0.5);
+
+  errortest.set_crossover(0.9);
+  assert(fabs(errortest.get_crossover() - 0.9) < 0.0001);
+  errortest.set_mutation(0.1);
+  assert(fabs(errortest.get_mutation() - 0.1) < 0.0001);
+
+  errortest.set_mutate_function(&mutate0);
+
+  try {
+    errortest.do_generation();
+    std::cerr << "TEST FAIL: do_generation() should result in an exception when crossover function is NULL!" << std::endl;
+  } catch (int e) {
+    assert(e == 2);
+  }
+
+  errortest.set_crossover_function(&cross0);
+
+  try {
+    errortest.do_generation();
+    std::cerr << "TEST FAIL: do_generation() should result in an exception when population is zero!" << std::endl;
+  } catch (int e) {
+    assert(e == 3);
+  }
+
+  try {
+    errortest.set_pop(10);
+    std::cerr << "TEST FAIL: set_pop() should result in an exception when random candidate function is NULL!!" << std::endl;
+  } catch (int e) {
+    assert(e == 4);
+  }
+
+  errortest.set_random_function(&rand);
+
+  try {
+    errortest.do_generation();
+    std::cerr << "TEST FAIL: do_generation() should result in an exception when fitness function is NULL!" << std::endl;
+  } catch(int e) {
+    assert(e == 5);
+  }
+
+  errortest.set_fitness_function(&fitness0);
+
+  errortest.set_pop(10);
+
+  errortest.do_generation();
+
+  assert(errortest.get_generation_count() == 1);
+  
   return 0;
 }
